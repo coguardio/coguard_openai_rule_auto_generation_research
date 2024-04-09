@@ -1,0 +1,256 @@
+In [1]: from openai import OpenAI
+
+In [2]: client = OpenAI()
+
+In [3]: completion = client.chat.completions.create(
+   ...:   model="gpt-4",
+   ...:   messages=[
+   ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+   ...:     {"role": "user", "content": "Please list all configuration parameters of Apache Spark"}
+   ...:   ]
+   ...: )
+
+In [4]: print(completion.choices[0].message.content)
+[
+    "spark.driver.memory",
+    "spark.driver.cores",
+    "spark.driver.maxResultSize",
+    "spark.driver.logLevel",
+    "spark.executor.memory",
+    "spark.executor.cores",
+    "spark.master",
+    "spark.app.name",
+    "spark.local.dir",
+    "spark.logConf",
+    "spark.serializer",
+    "spark.executor.logs.rolling.strategy",
+    "spark.executor.logs.rolling.maxRetainedFiles",
+    "spark.executor.logs.rolling.size.maxBytes",
+    "spark.executor.logs.rolling.time.interval",
+    "spark.files",
+    "spark.jars",
+    "spark.submit.deployMode",
+    "spark.scheduler.mode",
+    "spark.ui.reverseProxy",
+    "spark.ui.reverseProxyUrl",
+    "spark.task.maxFailures",
+    "spark.memory.fraction",
+    "spark.memory.storageFraction",
+    "spark.storage.memoryFraction",
+    "spark.memory.offHeap.enabled",
+    "spark.memory.offHeap.size",
+    "spark.cores.max",
+    "spark.hadoop.cloneConf",
+    "spark.rdd.compress",
+    "spark.broadcast.compress",
+    "spark.shuffle.compress",
+    "spark.shuffle.spill.compress",
+    "spark.shuffle.manager",
+    "spark.shuffle.consolidateFiles",
+    "spark.shuffle.service.enabled",
+    "spark.shuffle.service.port"
+]
+
+In [5]: completion = client.chat.completions.create(
+   ...:   model="gpt-4",
+   ...:   messages=[
+   ...:     {"role": "system", "content": "You are a helpful assistant outputting stuff as JSON."},
+   ...:     {"role": "user", "content": "Please list all configuration parameters of Apache Spark"}
+   ...:   ]
+   ...: )
+
+In [6]: print(completion.choices[0].message.content)
+{
+  "sparkConfigurations": [
+    {
+        "name": "spark.app.name",
+        "description": "The name of your application"
+    },
+    {
+        "name": "spark.master",
+        "description": "The master URL for the cluster"
+    },
+    {
+        "name": "spark.driver.memory",
+        "description": "Amount of memory to use for the driver process"
+    },
+    {
+        "name": "spark.executor.memory",
+        "description": "Amount of memory to use per executor process"
+    },
+    {
+        "name": "spark.executor.cores",
+        "description": "The number of cores to use on each executor"
+    },
+    {
+        "name": "spark.logConf",
+        "description": "Whether to log SparkConf"
+    },
+    {
+        "name": "spark.eventLog.enabled",
+        "description": "Whether to log Spark events"
+    },
+    {
+        "name": "spark.driver.maxResultSize",
+        "description": "Limit of total size of serialized results of all partitions for each Spark action"
+    },
+    {
+        "name": "spark.default.parallelism",
+        "description": "Default number of parallel tasks to perform (when no specific value is given)"
+    },
+    {
+        "name": "spark.files",
+        "description": "Comma-separated list of files to be placed in the working directory of each executor"
+    },
+    {
+        "name": "spark.jars",
+        "description": "Comma-separated list of jars to include on the driver and executor classpaths"
+    },
+    {
+        "name": "spark.driver.extraJavaOptions",
+        "description": "A string of extra JVM options to pass to the driver"
+    },
+    {
+        "name": "spark.executor.extraJavaOptions",
+        "description": "A string of extra JVM options to pass to the executor"
+    },
+    {
+        "name": "spark.serializer",
+        "description": "Deserializer to use"
+    },
+    {
+        "name": "spark.driver.allowMultipleContexts",
+        "description": "Whether to allow multiple SparkContexts"
+    },
+    {
+        "name": "spark.executor.heartbeatInterval",
+        "description": "Interval between each executor's heartbeats to the driver"
+    },
+    {
+        "name": "spark.network.timeout",
+        "description": "Default timeout for all network interactions"
+    },
+    {
+        "name": "spark.local.dir",
+        "description": "Directory to use for 'scratch' space in Spark"
+    },
+    {
+        "name": "spark.ui.enabled",
+        "description": "Whether to run the web UI for the application"
+    },
+    {
+        "name": "spark.kryoserializer.buffer.max",
+        "description": "Maximum allowable size of a serialized buffer"
+    }
+  ]
+}
+
+In [7]: print(completion.choices[0])
+Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='{\n  "sparkConfigurations": [\n    {\n        "name": "spark.app.name",\n        "description": "The name of your application"\n    },\n    {\n        "name": "spark.master",\n        "description": "The master URL for the cluster"\n    },\n    {\n        "name": "spark.driver.memory",\n        "description": "Amount of memory to use for the driver process"\n    },\n    {\n        "name": "spark.executor.memory",\n        "description": "Amount of memory to use per executor process"\n    },\n    {\n        "name": "spark.executor.cores",\n        "description": "The number of cores to use on each executor"\n    },\n    {\n        "name": "spark.logConf",\n        "description": "Whether to log SparkConf"\n    },\n    {\n        "name": "spark.eventLog.enabled",\n        "description": "Whether to log Spark events"\n    },\n    {\n        "name": "spark.driver.maxResultSize",\n        "description": "Limit of total size of serialized results of all partitions for each Spark action"\n    },\n    {\n        "name": "spark.default.parallelism",\n        "description": "Default number of parallel tasks to perform (when no specific value is given)"\n    },\n    {\n        "name": "spark.files",\n        "description": "Comma-separated list of files to be placed in the working directory of each executor"\n    },\n    {\n        "name": "spark.jars",\n        "description": "Comma-separated list of jars to include on the driver and executor classpaths"\n    },\n    {\n        "name": "spark.driver.extraJavaOptions",\n        "description": "A string of extra JVM options to pass to the driver"\n    },\n    {\n        "name": "spark.executor.extraJavaOptions",\n        "description": "A string of extra JVM options to pass to the executor"\n    },\n    {\n        "name": "spark.serializer",\n        "description": "Deserializer to use"\n    },\n    {\n        "name": "spark.driver.allowMultipleContexts",\n        "description": "Whether to allow multiple SparkContexts"\n    },\n    {\n        "name": "spark.executor.heartbeatInterval",\n        "description": "Interval between each executor\'s heartbeats to the driver"\n    },\n    {\n        "name": "spark.network.timeout",\n        "description": "Default timeout for all network interactions"\n    },\n    {\n        "name": "spark.local.dir",\n        "description": "Directory to use for \'scratch\' space in Spark"\n    },\n    {\n        "name": "spark.ui.enabled",\n        "description": "Whether to run the web UI for the application"\n    },\n    {\n        "name": "spark.kryoserializer.buffer.max",\n        "description": "Maximum allowable size of a serialized buffer"\n    }\n  ]\n}', role='assistant', function_call=None, tool_calls=None))
+
+In [8]: completion.model_copy?
+Signature:
+completion.model_copy(
+    *,
+    update: 'dict[str, Any] | None' = None,
+    deep: 'bool' = False,
+) -> 'Model'
+Docstring:
+Usage docs: https://docs.pydantic.dev/2.6/concepts/serialization/#model_copy
+
+Returns a copy of the model.
+
+Args:
+    update: Values to change/add in the new model. Note: the data is not validated
+        before creating the new model. You should trust this data.
+    deep: Set to `True` to make a deep copy of the model.
+
+Returns:
+    New model instance.
+File:      /usr/lib/python3.11/site-packages/pydantic/main.py
+Type:      method
+
+In [9]: completion = client.chat.completions.create(
+   ...:   model="gpt-4",
+   ...:   messages=[
+   ...:     {"role": "system", "content": "You are a helpful assistant outputting stuff as JSON."},
+   ...:     {"role": "user", "content": "Please list all configuration parameters of Apache Spark"},
+   ...:     {"role": "assistant", "content": '{\n  "sparkConfigurations": [\n    {\n        "name": "spark.app.name",\n        "description": "The name of your application"\n    },\n    {\n        "name": "spark.master",\n        "description": "The master URL for the cluster"\n    },\n    {\n        "name": "spark.driver.memory",\n        "description": "Amount of memory to use
+   ...: for the driver process"\n    },\n    {\n        "name": "spark.executor.memory",\n        "description": "Amount of memory to use per executor process"\n    },\n    {\n        "name": "spark.executor.cores",\n        "description": "The number of cores to use on each executor"\n    },\n    {\n        "name": "spark.logConf",\n        "description": "Whether to log SparkCo
+   ...: nf"\n    },\n    {\n        "name": "spark.eventLog.enabled",\n        "description": "Whether to log Spark events"\n    },\n    {\n        "name": "spark.driver.maxResultSize",\n        "description": "Limit of total size of serialized results of all partitions for each Spark action"\n    },\n    {\n        "name": "spark.default.parallelism",\n        "description": "De
+   ...: fault number of parallel tasks to perform (when no specific value is given)"\n    },\n    {\n        "name": "spark.files",\n        "description": "Comma-separated list of files to be placed in the working directory of each executor"\n    },\n    {\n        "name": "spark.jars",\n        "description": "Comma-separated list of jars to include on the driver and executor c
+   ...: lasspaths"\n    },\n    {\n        "name": "spark.driver.extraJavaOptions",\n        "description": "A string of extra JVM options to pass to the driver"\n    },\n    {\n        "name": "spark.executor.extraJavaOptions",\n        "description": "A string of extra JVM options to pass to the executor"\n    },\n    {\n        "name": "spark.serializer",\n        "description
+   ...: ": "Deserializer to use"\n    },\n    {\n        "name": "spark.driver.allowMultipleContexts",\n        "description": "Whether to allow multiple SparkContexts"\n    },\n    {\n        "name": "spark.executor.heartbeatInterval",\n        "description": "Interval between each executor\'s heartbeats to the driver"\n    },\n    {\n        "name": "spark.network.timeout",\n
+   ...:       "description": "Default timeout for all network interactions"\n    },\n    {\n        "name": "spark.local.dir",\n        "description": "Directory to use for \'scratch\' space in Spark"\n    },\n    {\n        "name": "spark.ui.enabled",\n        "description": "Whether to run the web UI for the application"\n    },\n    {\n        "name": "spark.kryoserializer.buf
+   ...: fer.max",\n        "description": "Maximum allowable size of a serialized buffer"\n    }\n  ]\n}'},
+   ...:     {"role": "user", "content": "Thank you for this response. The list is not complete. Give me more configuration items."}
+   ...:   ]
+   ...: )
+
+In [10]: print(completion.choices[0].message.content)
+{
+  "sparkConfigurations": [
+    {
+      "name": "spark.driver.extraClassPath",
+      "description":"Extra classpath entries to prepend to the classpath of the driver."
+    },
+    {
+      "name": "spark.driver.userClassPathFirst",
+      "description": "Whether to give user-added jars precedence over Spark's own jars when loading classes in the driver."
+    },
+    {
+      "name": "spark.executor.extraClassPath",
+      "description": "Extra classpath entries to prepend to the classpath of executors."
+    },
+    {
+      "name": "spark.executor.userClassPathFirst",
+      "description": "Whether to give user-added jars precedence over Spark's own jars when loading classes in the executor."
+    },
+    {
+      "name": "spark.driver.cores",
+      "description": "Number of cores to use for the driver process, only in cluster mode."
+    },
+    {
+      "name": "spark.submit.deployMode",
+      "description": "Whether to launch the driver program locally ('client') or on one of the worker machines inside the cluster ('cluster')."
+    },
+    {
+      "name": "spark.executor.instances",
+      "description": "The number of executors for static allocation."
+    },
+    {
+      "name": "spark.dynamicAllocation.enabled",
+      "description": "Whether to use dynamic resource allocation, which scales the number of executors registered with this application up and down based on the workload."
+    },
+    {
+      "name": "spark.shuffle.service.enabled",
+      "description": "Whether to use the external shuffle service, which is required for dynamic executors allocation."
+    },
+    {
+      "name": "spark.shuffle.compress",
+      "description": "Whether to compress map output files."
+    },
+    {
+      "name": "spark.shuffle.spill.compress",
+      "description": "Whether to compress data spilled during shuffles."
+    },
+    {
+      "name": "spark.broadcast.compress",
+      "description": "Whether to compress broadcast variables before sending them."
+    },
+    {
+      "name": "spark.broadcast.checksum",
+      "description": "Whether to add a checksum for broadcasted variables."
+    },
+    {
+      "name": "spark.io.compression.codec",
+      "description": "The codec to use for compressing RDD partitions."
+    },
+    {
+      "name": "spark.io.compression.snappy.blockSize",
+      "description": "Block size for the snappy compression codec, in KB."
+    }
+  ]
+}
+
+In [11]:

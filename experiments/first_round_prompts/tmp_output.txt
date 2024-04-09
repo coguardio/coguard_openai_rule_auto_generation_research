@@ -1,0 +1,363 @@
+In [1]: from openai import OpenAI
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[1], line 1
+----> 1 from openai import OpenAI
+
+ModuleNotFoundError: No module named 'openai'
+
+In [2]: from openai import OpenAI
+
+In [3]:
+Do you really want to exit ([y]/n)?
+➜  ~ cd ~/Documents/software_and_research/coguard/
+➜  coguard git:(master) ✗ cd ..
+➜  software_and_research cd coguard_new_repo/coguard_llm_rule_generation
+➜  coguard_llm_rule_generation git:(COS-466-initial-planning-out) ✗ set -a
+➜  coguard_llm_rule_generation git:(COS-466-initial-planning-out) ✗ source .env
+➜  coguard_llm_rule_generation git:(COS-466-initial-planning-out) ✗ set +a
+➜  coguard_llm_rule_generation git:(COS-466-initial-planning-out) ✗ ipython
+Python 3.11.7 (main, Jan 29 2024, 16:03:57) [GCC 13.2.1 20230801]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.22.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from openai import OpenAI
+
+In [2]: client = OpenAI()
+
+In [3]: completion = client.chat.completions.create(
+   ...:   model="gpt-3.5-turbo",
+   ...:   messages=[
+   ...:     {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
+   ...:     {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+   ...:   ]
+   ...: )
+
+In [4]: print(completion.choices[0].message)
+ChatCompletionMessage(content='In the world of code, a concept profound,\nRecursion whispers without making a sound.\nA function that calls itself, oh so clever,\nTo solve problems complex, and forever endeavor.\n\nLike a mirror reflecting its own reflection,\nRecursion dives deep, without hesitation.\nBreaking tasks into parts, it boldly explores,\nSolving puzzles, unearthing hidden shores.\n\nEach call creates a chain, an endless loop,\nUntil a base case breaks the troop.\nLike a fractal expanding in infinite grace,\nRecursion dances, leaving a trace.\n\nThrough loops and stacks, it weaves a tale,\nUnraveling mysteries, without fail.\nIn its elegance and beauty, we find,\nA programming marvel of a special kind.\n\nSo embrace recursion, let it guide your way,\nIn the realm of code, where it will stay.\nA poetic dance of function and call,\nRecursion, the masterpiece, standing tall.', role='assistant', function_call=None, tool_calls=None)
+
+In [5]: response = client.chat.completions.create(
+   ...:   model="gpt-3.5-turbo",
+   ...:   messages=[
+   ...:     {"role": "system", "content": "You are a helpful assistant."},
+   ...:     {"role": "user", "content": "Who won the world series in 2020?"},
+   ...:     {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+   ...:     {"role": "user", "content": "Where was it played?"}
+   ...:   ]
+   ...: )
+
+In [6]: print(response)
+ChatCompletion(id='chatcmpl-8yR44MjPermnmGAKVhbgKVcma2OqJ', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The 2020 World Series was played at a neutral site due to the COVID-19 pandemic. The games were held at Globe Life Field in Arlington, Texas.', role='assistant', function_call=None, tool_calls=None))], created=1709414408, model='gpt-3.5-turbo-0125', object='chat.completion', system_fingerprint='fp_2b778c6b35', usage=CompletionUsage(completion_tokens=33, prompt_tokens=53, total_tokens=86))
+
+In [7]: print(response.choices)
+[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The 2020 World Series was played at a neutral site due to the COVID-19 pandemic. The games were held at Globe Life Field in Arlington, Texas.', role='assistant', function_call=None, tool_calls=None))]
+
+In [8]: print(response.choices[0].message)
+ChatCompletionMessage(content='The 2020 World Series was played at a neutral site due to the COVID-19 pandemic. The games were held at Globe Life Field in Arlington, Texas.', role='assistant', function_call=None, tool_calls=None)
+
+In [9]: print(response.choices[0].message.content)
+The 2020 World Series was played at a neutral site due to the COVID-19 pandemic. The games were held at Globe Life Field in Arlington, Texas.
+
+In [10]: completion = client.chat.completions.create(
+    ...:   model="gpt-3.5-turbo",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "Using the documentation of Apache Spark, which configuration parameters are relevant from a security perspective?."}
+    ...:   ]
+    ...: )
+
+In [11]: print(completion.choices)
+[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='```json\n[\n    "spark.authenticate",\n    "spark.ssl.enabled",\n    "spark.ssl.keyStore",\n    "spark.ssl.keyStorePassword",\n    "spark.ssl.trustStore",\n    "spark.ssl.trustStorePassword",\n    "spark.acls.enable",\n    "spark.ui.acls.enable",\n    "spark.ui.view.acls",\n    "spark.ui.view.acls.groups",\n    "spark.hadoop.fs.s3a.access.key",\n    "spark.hadoop.fs.s3a.secret.key"\n]\n```', role='assistant', function_call=None, tool_calls=None))]
+
+In [12]: print(completion.choices[0].content)
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File /usr/lib/python3.11/site-packages/pydantic/main.py:759, in BaseModel.__getattr__(self, item)
+    758 try:
+--> 759     return pydantic_extra[item]
+    760 except KeyError as exc:
+
+KeyError: 'content'
+
+The above exception was the direct cause of the following exception:
+
+AttributeError                            Traceback (most recent call last)
+Cell In[12], line 1
+----> 1 print(completion.choices[0].content)
+
+File /usr/lib/python3.11/site-packages/pydantic/main.py:761, in BaseModel.__getattr__(self, item)
+    759         return pydantic_extra[item]
+    760     except KeyError as exc:
+--> 761         raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+    762 else:
+    763     if hasattr(self.__class__, item):
+
+AttributeError: 'Choice' object has no attribute 'content'
+
+In [13]: print(completion.choices[0].message.content)
+```json
+[
+    "spark.authenticate",
+    "spark.ssl.enabled",
+    "spark.ssl.keyStore",
+    "spark.ssl.keyStorePassword",
+    "spark.ssl.trustStore",
+    "spark.ssl.trustStorePassword",
+    "spark.acls.enable",
+    "spark.ui.acls.enable",
+    "spark.ui.view.acls",
+    "spark.ui.view.acls.groups",
+    "spark.hadoop.fs.s3a.access.key",
+    "spark.hadoop.fs.s3a.secret.key"
+]
+```
+
+In [14]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "Using the documentation of Apache Spark, which configuration parameters are relevant from a security perspective?."}
+    ...:   ]
+    ...: )
+
+
+In [15]:
+
+In [15]: print(completion.choices[0].message.content)
+[
+  "spark.acls.enable",
+  "spark.ui.reverseProxy",
+  "spark.ui.reverseProxyUrl",
+  "spark.ui.filters",
+  "spark.ui.view.acls",
+  "spark.ui.view.acls.groups",
+  "spark.admin.acls",
+  "spark.admin.acls.groups",
+  "spark.modify.acls",
+  "spark.modify.acls.groups",
+  "spark.hadoop.yarn.timeline-service.enabled",
+  "spark.ssl.enabled",
+  "spark.ssl.protocol",
+  "spark.ssl.factory",
+  "spark.ssl.storesSecretProvider",
+  "spark.ssl.keyPassword",
+  "spark.ssl.keyStore",
+  "spark.ssl.keyStorePassword",
+  "spark.ssl.keyStoreType",
+  "spark.ssl.trustStore",
+  "spark.ssl.trustStorePassword",
+  "spark.ssl.trustStoreType",
+  "spark.ssl.enabledAlgorithms",
+  "spark.redaction.regex",
+  "spark.network.crypto.enabled",
+  "spark.network.crypto.saslFallback",
+  "spark.authenticate",
+  "spark.authenticate.enableSaslEncryption",
+  "spark.authenticate.secret"
+]
+
+In [16]: print(completion.choices[0].message)
+ChatCompletionMessage(content='[\n  "spark.acls.enable",\n  "spark.ui.reverseProxy",\n  "spark.ui.reverseProxyUrl",\n  "spark.ui.filters",\n  "spark.ui.view.acls",\n  "spark.ui.view.acls.groups",\n  "spark.admin.acls",\n  "spark.admin.acls.groups",\n  "spark.modify.acls",\n  "spark.modify.acls.groups",\n  "spark.hadoop.yarn.timeline-service.enabled",\n  "spark.ssl.enabled",\n  "spark.ssl.protocol",\n  "spark.ssl.factory",\n  "spark.ssl.storesSecretProvider",\n  "spark.ssl.keyPassword",\n  "spark.ssl.keyStore",\n  "spark.ssl.keyStorePassword",\n  "spark.ssl.keyStoreType",\n  "spark.ssl.trustStore",\n  "spark.ssl.trustStorePassword",\n  "spark.ssl.trustStoreType",\n  "spark.ssl.enabledAlgorithms",\n  "spark.redaction.regex",\n  "spark.network.crypto.enabled",\n  "spark.network.crypto.saslFallback",\n  "spark.authenticate",\n  "spark.authenticate.enableSaslEncryption",\n  "spark.authenticate.secret"\n]', role='assistant', function_call=None, tool_calls=None)
+
+In [17]: print(completion.choices[0])
+Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='[\n  "spark.acls.enable",\n  "spark.ui.reverseProxy",\n  "spark.ui.reverseProxyUrl",\n  "spark.ui.filters",\n  "spark.ui.view.acls",\n  "spark.ui.view.acls.groups",\n  "spark.admin.acls",\n  "spark.admin.acls.groups",\n  "spark.modify.acls",\n  "spark.modify.acls.groups",\n  "spark.hadoop.yarn.timeline-service.enabled",\n  "spark.ssl.enabled",\n  "spark.ssl.protocol",\n  "spark.ssl.factory",\n  "spark.ssl.storesSecretProvider",\n  "spark.ssl.keyPassword",\n  "spark.ssl.keyStore",\n  "spark.ssl.keyStorePassword",\n  "spark.ssl.keyStoreType",\n  "spark.ssl.trustStore",\n  "spark.ssl.trustStorePassword",\n  "spark.ssl.trustStoreType",\n  "spark.ssl.enabledAlgorithms",\n  "spark.redaction.regex",\n  "spark.network.crypto.enabled",\n  "spark.network.crypto.saslFallback",\n  "spark.authenticate",\n  "spark.authenticate.enableSaslEncryption",\n  "spark.authenticate.secret"\n]', role='assistant', function_call=None, tool_calls=None))
+
+In [18]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "Using the documentation of Apache Spark, which configuration parameters are responsible for encryption in transit for each component?"}
+    ...:   ]
+    ...: )
+
+In [19]: print(completion.choices[0])
+Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='[\n  "spark.ssl.protocol",\n  "spark.ssl.trustStore",\n  "spark.ssl.trustStorePassword",\n  "spark.ssl.keyStore",\n  "spark.ssl.keyStorePassword",\n  "spark.ssl.needsClientAuth",\n  "spark.ssl.enabledAlgorithms"\n]', role='assistant', function_call=None, tool_calls=None))
+
+In [20]: print(completion.choices[0].message.content)
+[
+  "spark.ssl.protocol",
+  "spark.ssl.trustStore",
+  "spark.ssl.trustStorePassword",
+  "spark.ssl.keyStore",
+  "spark.ssl.keyStorePassword",
+  "spark.ssl.needsClientAuth",
+  "spark.ssl.enabledAlgorithms"
+]
+
+In [21]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "Using the documentation of Apache Spark, which configuration parameters are responsible for encryption in transit for each component, i.e. spark itself, the ui, the standalone mode and the historyserver?"}
+    ...:   ]
+    ...: )
+
+In [22]: print(completion.choices[0].message.content)
+[
+  "spark.network.crypto.enabled",
+  "spark.ui.reverseProxy",
+  "spark.ui.reverseProxyUrl",
+  "spark.ui.filters",
+  "spark.ui.xXSSProtection",
+  "spark.ssl.enabled",
+  "spark.ssl.protocol",
+  "spark.ssl.factory",
+  "spark.ssl.standalone.enabled",
+  "spark.ssl.standalone.protocol",
+  "spark.ssl.standalone.factory",
+  "spark.ssl.ui.enabled",
+  "spark.ssl.ui.protocol",
+  "spark.ssl.ui.factory",
+  "spark.ssl.historyServer.enabled",
+  "spark.ssl.historyServer.protocol",
+  "spark.ssl.historyServer.factory"
+]
+
+In [23]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "Using the documentation of Apache Spark, which configuration parameters are responsible for encryption in transit for the standalone mode?"}
+    ...:   ]
+    ...: )
+
+In [24]: print(completion.choices[0].message.content)
+[
+  "spark.ssl.enabled",
+  "spark.ssl.protocol",
+  "spark.ssl.factory",
+  "spark.ssl.trustStore",
+  "spark.ssl.trustStorePassword",
+  "spark.ssl.trustStoreType",
+  "spark.ssl.needClientAuth",
+  "spark.ssl.keyStore",
+  "spark.ssl.keyStorePassword",
+  "spark.ssl.keyPassword",
+  "spark.ssl.keyStoreType"
+]
+
+In [25]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "If you were to review spark configuration files for correct settings from a security perspective, which settings would you check? List the configuration parameters only."}
+    ...:   ]
+    ...: )
+
+In [26]: print(completion.choices[0].message.content)
+[
+  "spark.acls.enable",
+  "spark.authenticate",
+  "spark.authenticate.enableSaslEncryption",
+  "spark.authenticate.secret",
+  "spark.authenticate.secretBitSize",
+  "spark.network.crypto.enabled",
+  "spark.network.crypto.saslFallback",
+  "spark.ui.reverseProxy",
+  "spark.ui.reverseProxyUrl",
+  "spark.ui.filters",
+  "spark.ssl.enabled",
+  "spark.ssl.protocol",
+  "spark.ssl.factory",
+  "spark.ssl.stores",
+  "spark.ssl.trustStore",
+  "spark.ssl.trustStorePassword",
+  "spark.ssl.keyStore",
+  "spark.ssl.keyStorePassword",
+  "spark.ssl.keyPassword",
+  "spark.ssl.enabledAlgorithms"
+]
+
+In [27]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "If you were to review spark configuration files for correct settings from a security perspective, which settings would you check? List the configuration parameters only."}
+    ...:   ]
+    ...: )
+
+In [28]: print(completion.choices[0].message.content)
+[
+    "spark.authenticate",
+    "spark.acls.enable",
+    "spark.network.crypto.enabled",
+    "spark.io.encryption.enabled",
+    "spark.authenticate.secret",
+    "spark.authenticate.enableSaslEncryption",
+    "spark.history.ui.acls.enable",
+    "spark.history.ui.acls.users",
+    "spark.history.fs.cleaner.enabled",
+    "spark.deploy.recoveryMode",
+    "spark.history.provider",
+    "spark.ssl.enabled",
+    "spark.ssl.protocol",
+    "spark.ssl.trustStore",
+    "spark.ssl.trustStorePassword",
+    "spark.ssl.keyStore",
+    "spark.ssl.keyStorePassword",
+    "spark.ssl.keyPassword",
+    "spark.ssl.requireCert",
+    "spark.rpc.netty.dispatcher.numThreads",
+    "spark.ui.reverseProxy"
+]
+
+In [29]: completion = client.chat.completions.create(
+    ...:   model="gpt-3.5-turbo",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "If you were to review spark configuration files for correct settings from a security perspective, which settings would you check? List the configuration parameters only."}
+    ...:   ]
+    ...: )
+
+In [30]: print(completion.choices[0].message.content)
+```json
+[
+    "spark.authenticate",
+    "spark.acls.enable",
+    "spark.evil.ddos.option",
+    "spark.ssl.enable",
+    "spark.network.crypto.enabled",
+    "spark.yarn.am.loginKeytab",
+    "spark.yarn.credentials.file"
+]
+```
+
+In [31]: completion = client.chat.completions.create(
+    ...:   model="gpt-4",
+    ...:   messages=[
+    ...:     {"role": "system", "content": "You are an assistant that is a cybersecurity expert and knows their configuration files. Your response here should be a JSON list of strings."},
+    ...:     {"role": "user", "content": "If you were to review spark configuration files for correct settings from a security perspective, which settings would you check? List the configuration parameters only. Make it as many as possible"}
+    ...:   ]
+    ...: )
+
+In [32]: print(completion.choices[0].message.content)
+[
+"spark.authenticate",
+"spark.acls.enable",
+"spark.admin.acls",
+"spark.modify.acls",
+"spark.ui.reverseProxy",
+"spark.ui.reverseProxyUrl",
+"spark.ui.filters",
+"spark.ui.view.acls",
+"spark.authenticate.enableSaslEncryption",
+"spark.network.sasl.serverAlwaysEncrypt",
+"spark.ssl.enabled",
+"spark.ssl.protocol",
+"spark.ssl.enabledAlgorithms",
+"spark.ssl.keyPassword",
+"spark.ssl.keyStore",
+"spark.ssl.keyStorePassword",
+"spark.ssl.keyStoreType",
+"spark.ssl.trustStore",
+"spark.ssl.trustStorePassword",
+"spark.ssl.trustStoreType",
+"spark.io.encryption.enabled",
+"spark.security.credentials.hdfs.enabled",
+"spark.security.credentials.hive.enabled",
+"spark.security.credentials.jaas.configName",
+"spark.security.credentials.provider",
+"spark.security.credentials.serviceCredential.provider",
+"spark.hadoop.hadoop.security.authentication",
+"spark.hadoop.hadoop.security.authorization"
+]

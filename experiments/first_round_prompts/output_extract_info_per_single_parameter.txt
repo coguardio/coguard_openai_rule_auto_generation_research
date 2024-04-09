@@ -1,0 +1,385 @@
+{
+"name": "spark.yarn.shuffle.server.recovery.disabled",
+"default_value": "false",
+"secure_value": "true"
+}
+{
+  "name": "spark.authenticate",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.authenticate.secret",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.authenticate.secret.file",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.authenticate.secret.driver.file",
+  "defaultValue": "None",
+  "secureValue": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.authenticate.secret.executor.file",
+  "default_value": "None",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.network.crypto.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "parameter_name": "spark.network.crypto.saslFallback",
+  "default_value": "true",
+  "secure_value": "false"
+}
+{
+  "parameter_name": "spark.authenticate.enableSaslEncryption",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+"name": "spark.network.sasl.serverAlwaysEncrypt",
+"default_value": "false",
+"secure_value": "true"
+}
+{
+  "name": "spark.io.encryption.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "parameter_name": "spark.io.encryption.keySizeBits",
+  "default_value": "128",
+  "secure_value": "256"
+}
+{
+  "name": "spark.io.encryption.keygen.algorithm",
+  "defaultValue": "HmacSHA1",
+  "secureValue": "HmacSHA256"
+}
+{
+  "parameter_name": "spark.ui.allowFramingFrom",
+  "default_value": "None",
+  "secure_value": "None"
+}
+{
+  "name": "spark.ui.filters",
+  "default_value": "",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.acls.enable",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.admin.acls",
+  "defaultValue": "",
+  "secureValue": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.admin.acls.groups",
+  "default_value": "",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.modify.acls",
+  "default_value": "",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "Parameter_Name": "spark.modify.acls.groups",
+  "Default_Value": "''",
+  "Secure_Value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ui.view.acls",
+  "defaultValue": "",
+  "secureValue": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ui.view.acls.groups",
+  "default_value": "",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "ParameterName": "spark.user.groups.mapping",
+  "DefaultValue": "'' (empty string)",
+  "SecureEnvironmentValue": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.history.ui.acls.enable",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.history.ui.admin.acls",
+  "default_value": "",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.history.ui.admin.acls.groups",
+  "default_value": "<empty_string>",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.port",
+  "default_value": "None",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter": "spark.ssl.enabledAlgorithms",
+  "default": "",
+  "secure": "TLSv1.2,TLSv1.3"
+}
+{
+  "parameter_name": "spark.ssl.keyPassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.keyStore",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "Parameter_Name":"spark.ssl.keyStorePassword",
+  "Default_Value":"null",
+  "Secure_Value":"KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.keyStoreType",
+  "default_value": "jks",
+  "secure_value": "pkcs12"
+}
+{
+  "parameter_name": "spark.ssl.protocol",
+  "default_value": "None",
+  "secure_value": "TLS"
+}
+{
+  "parameter_name": "spark.ssl.needClientAuth",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.trustStore",
+  "default_value": null,
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.trustStorePassword",
+  "default_value": "none",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.trustStoreType",
+  "default_value": "JKS",
+  "secure_value": "JKS"
+}
+{
+  "name": "spark.ssl.ui.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.ui.port",
+  "default_value": "NONE",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.ui.enabledAlgorithms",
+  "defaultValue": "",
+  "secureValue": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.ui.keyPassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.ui.keyStore",
+  "default_value": null,
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.ui.keyStorePassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.ui.keyStoreType",
+  "default_value": "JKS",
+  "secure_value": "PKCS12"
+}
+{
+  "name": "spark.ssl.ui.protocol",
+  "defaultValue": "TLS",
+  "secureValue": "TLSv1.2"
+}
+{
+  "name": "spark.ssl.ui.needClientAuth",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "parameter_name": "spark.ssl.ui.trustStore",
+  "default_value": "None",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.ui.trustStorePassword",
+  "default_value": null,
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.ui.trustStoreType",
+  "default_value": "null",
+  "secure_value": "JKS"
+}
+{
+  "parameter_name": "spark.ssl.standalone.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.standalone.port",
+  "default_value": "-1",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.standalone.enabledAlgorithms",
+  "default_value": "",
+  "secure_value": "TLS_RSA_WITH_AES_128_CBC_SHA"
+}
+{
+  "name": "spark.ssl.standalone.keyPassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.standalone.keyStore",
+  "default": "null",
+  "secure": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.standalone.keyStorePassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.standalone.keyStoreType",
+  "default_value": "JKS",
+  "secure_value": "PKCS12"
+}
+{
+  "parameter_name": "spark.ssl.standalone.protocol",
+  "default_value": "TLSv1.1",
+  "secure_value": "TLSv1.2"
+}
+{
+  "parameter_name": "spark.ssl.standalone.needClientAuth",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.standalone.trustStore",
+  "default_value": null,
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.standalone.trustStorePassword",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.standalone.trustStoreType",
+  "default_value": "JKS",
+  "secure_value": "PKCS12"
+}
+{
+  "name": "spark.ssl.historyServer.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ssl.historyServer.port",
+  "default_value": "<none>",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "parameter_name": "spark.ssl.historyServer.enabledAlgorithms",
+  "default_value": "None",
+  "secure_value": "TLSv1.2,TLSv1.3"
+}
+{
+  "parameter_name": "spark.ssl.historyServer.keyPassword",
+  "default_value": "null",
+  "value_in_secure_environment": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.historyServer.keyStore",
+  "default_value": "None",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.historyServer.keyStorePassword",
+  "default value": "null",
+  "secure value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.historyServer.keyStoreType",
+  "default_value": "None",
+  "secure_value": "JKS"
+}
+{
+  "name": "spark.ssl.historyServer.protocol",
+  "default_value": "None",
+  "secure_value": "TLS"
+}
+{
+  "name": "spark.ssl.historyServer.needClientAuth",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "parameter_name": "spark.ssl.historyServer.trustStore",
+  "default_value": "null",
+  "secure_value": "KEY_SHOULD_EXIST"
+}
+{
+"name": "spark.ssl.historyServer.trustStorePassword",
+"default_value": "null",
+"secure_value": "KEY_SHOULD_EXIST"
+}
+{
+  "name": "spark.ssl.historyServer.trustStoreType",
+  "default_value": "null",
+  "secure_value": "jks"
+}
+{
+  "name": "spark.ui.xXssProtection",
+  "default_value": "1; mode=block",
+  "secure_value": "1; mode=block"
+}
+{
+  "parameter_name": "spark.ui.xContentTypeOptions.enabled",
+  "default_value": "false",
+  "secure_value": "true"
+}
+{
+  "name": "spark.ui.strictTransportSecurity",
+  "default_value": "false",
+  "secure_value": "true"
+}
