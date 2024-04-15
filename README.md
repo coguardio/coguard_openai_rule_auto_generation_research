@@ -2,10 +2,10 @@
 
 ## Introduction
 
-Disclosure: This research was partially funded under [OpenAi's Cybersecurity Grant
+Disclosure: This research was partially funded under [OpenAI's Cybersecurity Grant
 program](https://openai.com/blog/openai-cybersecurity-grant-program).
 
-In this research project we are presenting our work on using the OpenAI
+In this research, we present our work on using the OpenAI
 API to help battle the problem of software and platform misconfiguration. The
 misconfiguration of software is a common cause of data breaches and
 other security vulnerabilities and risks. The complexity of
@@ -23,8 +23,8 @@ frameworks. These rules may not check
 all of the possible configurations for each individual piece of
 software and may not include the inter-connectivity between
 components. Additionally these policies and rule-sets are not
-maintained with current software updates due their
-the challenges, and do not include many of the commonly used server
+maintained with current software updates due the complexity
+and challenges of rule maintenance, and do not include many of the commonly used server
 software in their policies. This is creating a false sense of security in having completed
 a configuration scan, but with unknown risks.
 
@@ -40,9 +40,9 @@ and reduce the risk of humman error in evaluating safe/secure configurations. Co
 two parts:
 -  **CoGuard Engine and Infrastructure Model** -- a predicate logic engine and representation of infrastructure,
 network, containers and applications.
-- **Policies, Rules and Rulesets** -- Supported services, applications and compliance frameworks
-Adding and maintaining the rules is a manual process.
+- **Policies, Rules and Rulesets** -- Supported services, applications and compliance frameworks.
 
+Adding and maintaining the rules is a manual process.
 Using OpenAI and CoGuard, we see a way to identify and add
 new policies/rules for configurations of all kinds of software and
 maintain or future proof existing configurations.
