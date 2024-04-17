@@ -2,10 +2,10 @@
 
 ## Introduction
 
-Disclosure: This research was partially funded under [OpenAi's Cybersecurity Grant
+Disclosure: This research was partially funded under [OpenAI's Cybersecurity Grant
 program](https://openai.com/blog/openai-cybersecurity-grant-program).
 
-In this research project we are presenting our work on using the OpenAI
+In this research, we present our work on using the OpenAI
 API to help battle the problem of software and platform misconfiguration. The
 misconfiguration of software is a common cause of data breaches and
 other security vulnerabilities and risks. The complexity of
@@ -23,8 +23,8 @@ frameworks. These rules may not check
 all of the possible configurations for each individual piece of
 software and may not include the inter-connectivity between
 components. Additionally these policies and rule-sets are not
-maintained with current software updates due their
-the challenges, and do not include many of the commonly used server
+maintained with current software updates due the complexity
+and challenges of rule maintenance, and do not include many of the commonly used server
 software in their policies. This is creating a false sense of security in having completed
 a configuration scan, but with unknown risks.
 
@@ -40,14 +40,14 @@ and reduce the risk of humman error in evaluating safe/secure configurations. Co
 two parts:
 -  **CoGuard Engine and Infrastructure Model** -- a predicate logic engine and representation of infrastructure,
 network, containers and applications.
-- **Policies, Rules and Rulesets** -- Supported services, applications and compliance frameworks
-Adding and maintaining the rules is a manual process.
+- **Policies, Rules and Rulesets** -- Supported services, applications and compliance frameworks.
 
+Adding and maintaining the rules is a manual process.
 Using OpenAI and CoGuard, we see a way to identify and add
 new policies/rules for configurations of all kinds of software and
 maintain or future proof existing configurations.
 
-### Increasing Software Choices {{More Choice}}
+### Increasing Software Choices
 
 The landscape of technologies used in modern organizations is
 expanding (see e.g. the [increasing adoption of SaaS
@@ -302,27 +302,31 @@ the default parameter).
 
 ### [C4] Creation of test configuration files to verify the created rules
 
-We at CoGuard have a test for every policy for a `fail` scenario, a
+We at CoGuard are committed to ensuring that all policies have not only a small chance of
+ending up being a false positive/true negative, but also ensuring proper change management.
+This is why we have a test for every policy for a `fail` scenario, a
 `pass` scenario and a `default` scenario (the latter can be either
-pass or fail, dependent on the default). These are basic tests that
-the logic formulating the policy has not been flawed.
+pass or fail, dependent on the default). These are practical tests ensuring that
+the logic formulating the policy has not been flawed and that edge cases are properly
+failing or passing.
 
-For each scenario, we are normally crafting by a test file, and run the CoGuard
+For each scenario, we are normally crafting test files, and run the CoGuard
 engine against it.
 
-Creating these files with the appropriate values and the correct
+These files have to be created with the appropriate values and the correct
 format (there are many configuration file formats out there, e.g. [INI](https://en.wikipedia.org/wiki/INI_file),
 [properties](https://en.wikipedia.org/wiki/.properties),
 [HCL2](https://developer.hashicorp.com/nomad/docs/job-specification/hcl2),
 [YAML](https://en.wikipedia.org/wiki/YAML)).
 
-The goal is to cover as many base and edge cases as possible with test
-files that should either controllably fail the policy, or pass it.
+The goal with these test files is to cover as many base and edge cases as possible
+that should either controllably fail the policy, or pass it.
 
-Hence, the goal of the last component is to create these test files,
+Hence, the goal of the last component is to create these test files for the auto-generated rules,
 so that the policies can then be tested against the engine in a
 feedback loop, and to have everything set for the future maintenance
-of this rule.
+of this rule. In this way, feedback about the created rules can be
+right away sent back to the engine for re-creation of either test or policy files in case of an error.
 
 **Example:** For the `spark.ssl.enabled` property, there should be
 three test files in place.
@@ -500,7 +504,7 @@ The code to do this in a loop can be found in this [Python
 script](./experiments/repetitive_ask_and_re_ask_more_configs.py), and the ouput can
 be found [here](./experiments/output_repetitive_ask_and_re_ask.txt).
 
-#### Conclusion on the extraction of configuration parameters via LLMS
+#### Conclusion on the extraction of configuration parameters via LLMs
 
 It appears that the direct use of the GPT models to identify security
 relevant, or even just any configuration parameters, of Apache Spark
@@ -628,7 +632,7 @@ A couple of observations here:
   `*.enabledAlgorithms` rows, where the suite is often just identified
   via the protocol.
 
-#### Conclusion on the identification of the recommended/default parameters via LLMS
+#### Conclusion on the identification of the recommended/default parameters via LLMs
 
 The default value deduction accuracy was amazing and exceeded 90%. For
 the recommended value, the accuracy has been ~87%, just from a simple
