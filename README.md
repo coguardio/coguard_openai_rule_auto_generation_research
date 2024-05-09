@@ -147,6 +147,7 @@ GPT-4.
 
 - https://arxiv.org/pdf/2205.12615.pdf
 - https://arxiv.org/abs/1910.08210
+- https://arxiv.org/pdf/2209.08853
 
 ## General architecture
 
